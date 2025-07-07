@@ -233,13 +233,13 @@
     return;
   }
 
-  const message = `🛍️ New Order Details:%0A` +
-    `📦 Product: ${selectedProduct}%0A` +
-    `👤 Name: ${name}%0A` +
-    `📱 Phone: ${phone}%0A` +
-    `✉️ Email: ${email}%0A` +
-    `📍 Location: ${location}%0A` +
-    `📝 Note: ${interest}`;
+  const message = ` New Order Details:%0A` +
+    ` Product: ${selectedProduct}%0A` +
+    ` Name: ${name}%0A` +
+    ` Phone: ${phone}%0A` +
+    ` Email: ${email}%0A` +
+    ` Location: ${location}%0A` +
+    ` Note: ${interest}`;
 
   const whatsappNumber = '8801836392725';
   const url = `https://wa.me/${whatsappNumber}?text=${encodeURI(message)}`;

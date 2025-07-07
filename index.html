@@ -195,46 +195,59 @@
   </section>
 
   <!-- Order Form Modal -->
-  <div id="overlay"></div>
-  <div id="orderForm">
-    <h3>Order Form</h3>
-    <label>আপনার নাম:</label><br />
-    <input type="text" id="customerName" placeholder="আপনার নাম লিখুন" required /><br />
-    <label>মোবাইল নম্বর:</label><br />
-    <input type="text" id="customerPhone" placeholder="মোবাইল নম্বর লিখুন" required /><br />
-    <button onclick="sendWhatsAppMessage()">Send Order</button>
-    <button onclick="closeOrderForm()">Cancel</button>
-  </div>
+  <!-- Order Form Modal -->
+<div id="overlay"></div>
+<div id="orderForm">
+  <h3>Order Form</h3>
+
+  <label>আপনার নাম:</label><br />
+  <input type="text" id="customerName" placeholder="আপনার নাম লিখুন" required /><br />
+
+  <label>মোবাইল নম্বর:</label><br />
+  <input type="text" id="customerPhone" placeholder="মোবাইল নম্বর লিখুন" required /><br />
+
+  <label>ইমেইল ঠিকানা:</label><br />
+  <input type="email" id="customerEmail" placeholder="example@email.com" /><br />
+
+  <label>ঠিকানা/লোকেশন:</label><br />
+  <input type="text" id="customerLocation" placeholder="আপনার লোকেশন লিখুন" /><br />
+
+  <label>আপনার আগ্রহ/নোট (সর্বোচ্চ ৫০ শব্দ):</label><br />
+  <input type="text" id="customerInterest" placeholder="যেমন: আমি স্কিন হোয়াইটেনিং এর জন্য খুঁজছি..." maxlength="250" /><br />
+
+  <button onclick="sendWhatsAppMessage()">Send Order</button>
+  <button onclick="closeOrderForm()">Cancel</button>
+</div>
+
 
   <script>
-    let selectedProduct = '';
-
-    function openOrderForm(productName) {
-      selectedProduct = productName;
-      document.getElementById('orderForm').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-    }
-
-    function closeOrderForm() {
-      document.getElementById('orderForm').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-    }
-
     function sendWhatsAppMessage() {
-      const name = document.getElementById('customerName').value.trim();
-      const phone = document.getElementById('customerPhone').value.trim();
-      if (!name || !phone) {
-        alert('Please enter both name and phone number');
-        return;
-      }
+  const name = document.getElementById('customerName').value.trim();
+  const phone = document.getElementById('customerPhone').value.trim();
+  const email = document.getElementById('customerEmail').value.trim();
+  const location = document.getElementById('customerLocation').value.trim();
+  const interest = document.getElementById('customerInterest').value.trim();
 
-      const message = `Order details:%0AProduct: ${selectedProduct}%0AName: ${name}%0APhone: ${phone}`;
-      const whatsappNumber = '8801836392725';
+  if (!name || !phone) {
+    alert('Please enter your name and phone number');
+    return;
+  }
 
-      const url = `https://wa.me/${whatsappNumber}?text=${message}`;
-      window.open(url, '_blank');
-      closeOrderForm();
-    }
+  const message = `🛍️ New Order Details:%0A` +
+    `📦 Product: ${selectedProduct}%0A` +
+    `👤 Name: ${name}%0A` +
+    `📱 Phone: ${phone}%0A` +
+    `✉️ Email: ${email}%0A` +
+    `📍 Location: ${location}%0A` +
+    `📝 Note: ${interest}`;
+
+  const whatsappNumber = '8801836392725';
+  const url = `https://wa.me/${whatsappNumber}?text=${encodeURI(message)}`;
+
+  window.open(url, '_blank');
+  closeOrderForm();
+}
+
   </script>
 </body>
 </html>

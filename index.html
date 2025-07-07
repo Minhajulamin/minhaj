@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beauty Touch BD</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f4ff;
+      color: #333;
+    }
+    header {
+      background-color: #800080;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .banner {
+      padding: 30px;
+      text-align: center;
+      background-color: #e6ccff;
+    }
+    .banner h2 {
+      color: #4b0082;
+    }
+    .products, .brands-products {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .product, .brand-product {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .product h3, .brand-product h3 {
+      color: #800080;
+    }
+    img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .order-btn {
+      background-color: #800080;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .contact {
+      background-color: #f3e6ff;
+      padding: 20px;
+      text-align: center;
+    }
+    .contact a {
+      display: inline-block;
+      margin: 10px;
+      color: #800080;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      background-color: #eee;
+    }
+    .section-title {
+      text-align: center;
+      color: #800080;
+      margin-top: 40px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    /* Modal styling */
+    #orderForm {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      padding: 20px;
+      border: 2px solid #800080;
+      border-radius: 10px;
+      z-index: 1000;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    #orderForm label {
+      font-weight: bold;
+    }
+    #orderForm input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Beauty Touch BD</h1>
+    <p>Your Natural Skincare Partner</p>
+  </header>
+
+  <div class="banner">
+    <h2>Explore Our Skincare Collection</h2>
+    <p>Handpicked products to glow your skin naturally</p>
+  </div>
+
+  <section class="products">
+    <div class="product">
+      <img src="https://www.biyingcosmetics.com/uploads/202131281/face-glow-whitening-cream34421914279.jpg" alt="Whitening Moisturizing Cream" />
+      <h3>Whitening Moisturizing Cream</h3>
+      <button class="order-btn" onclick="openOrderForm('Whitening Moisturizing Cream')">Order Now</button>
+    </div>
+    <div class="product">
+      <img src="https://flipmart.com.bd/wp-content/uploads/2021/10/242589809_3022980547972496_348504663643914388_n.jpg" alt="Anti-Acne Night Cream" />
+      <h3>Anti-Acne Night Cream</h3>
+      <button class="order-btn" onclick="openOrderForm('Anti-Acne Night Cream')">Order Now</button>
+    </div>
+    <div class="product">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPoQFD8OuktaxnNIGfVX2WNWrVNN-MjgHHxQ&s" alt="Sunscreen Cream (SPF 50+)" />
+      <h3>Sunscreen Cream (SPF 50+)</h3>
+      <button class="order-btn" onclick="openOrderForm('Sunscreen Cream (SPF 50+)')">Order Now</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/71+kef7DVpL._UF1000,1000_QL80_.jpg" alt="Eye Cream (Dark Circle Remover)" />
+      <h3>Eye Cream (Dark Circle Remover)</h3>
+      <button class="order-btn" onclick="openOrderForm('Eye Cream (Dark Circle Remover)')">Order Now</button>
+    </div>
+    <div class="product">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGzrI6_b_alVK-3eyCAgu8GoJGQwJuyca8WA&s" alt="Anti-Aging Collagen Cream" />
+      <h3>Anti-Aging Collagen Cream</h3>
+      <button class="order-btn" onclick="openOrderForm('Anti-Aging Collagen Cream')">Order Now</button>
+    </div>
+  </section>
+
+  <h2 class="section-title">Popular Brands</h2>
+
+  <section class="brands-products">
+    <div class="brand-product">
+      <img src="https://images.unsplash.com/photo-1618477462368-e7f5b6c1dfc1?auto=format&fit=crop&w=400&q=80" alt="BIOAQUA Whitening Serum" />
+      <h3>BIOAQUA Whitening Serum</h3>
+      <button class="order-btn" onclick="openOrderForm('BIOAQUA Whitening Serum')">Order Now</button>
+    </div>
+    <div class="brand-product">
+      <img src="https://images.unsplash.com/photo-1600185365928-3c9b3f06ecf3?auto=format&fit=crop&w=400&q=80" alt="BIOAQUA Gold Mask" />
+      <h3>BIOAQUA Gold Mask</h3>
+      <button class="order-btn" onclick="openOrderForm('BIOAQUA Gold Mask')">Order Now</button>
+    </div>
+
+    <div class="brand-product">
+      <img src="https://images.unsplash.com/photo-1620912189865-27a3a00e9a20?auto=format&fit=crop&w=400&q=80" alt="LANBENA Vitamin C Serum" />
+      <h3>LANBENA Vitamin C Serum</h3>
+      <button class="order-btn" onclick="openOrderForm('LANBENA Vitamin C Serum')">Order Now</button>
+    </div>
+    <div class="brand-product">
+      <img src="https://images.unsplash.com/photo-1600180758890-b09d5f6cf0b2?auto=format&fit=crop&w=400&q=80" alt="LANBENA Scar Removal Gel" />
+      <h3>LANBENA Scar Removal Gel</h3>
+      <button class="order-btn" onclick="openOrderForm('LANBENA Scar Removal Gel')">Order Now</button>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <a href="https://wa.me/8801836392725">WhatsApp: 01836392725</a>
+    <a href="https://www.facebook.com/minhajul.amin.881999">Facebook Page</a>
+  </section>
+
+  <!-- Order Form Modal -->
+  <div id="overlay"></div>
+  <div id="orderForm">
+    <h3>Order Form</h3>
+    <label>আপনার নাম:</label><br />
+    <input type="text" id="customerName" placeholder="আপনার নাম লিখুন" required /><br />
+    <label>মোবাইল নম্বর:</label><br />
+    <input type="text" id="customerPhone" placeholder="মোবাইল নম্বর লিখুন" required /><br />
+    <button onclick="sendWhatsAppMessage()">Send Order</button>
+    <button onclick="closeOrderForm()">Cancel</button>
+  </div>
+
+  <script>
+    let selectedProduct = '';
+
+    function openOrderForm(productName) {
+      selectedProduct = productName;
+      document.getElementById('orderForm').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeOrderForm() {
+      document.getElementById('orderForm').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function sendWhatsAppMessage() {
+      const name = document.getElementById('customerName').value.trim();
+      const phone = document.getElementById('customerPhone').value.trim();
+      if (!name || !phone) {
+        alert('Please enter both name and phone number');
+        return;
+      }
+
+      const message = `Order details:%0AProduct: ${selectedProduct}%0AName: ${name}%0APhone: ${phone}`;
+      const whatsappNumber = '8801836392725';
+
+      const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+      window.open(url, '_blank');
+      closeOrderForm();
+    }
+  </script>
+</body>
+</html>
